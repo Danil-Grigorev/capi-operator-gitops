@@ -1,0 +1,32 @@
+apiVersion: addons.cluster.x-k8s.io/v1alpha1
+kind: VeleroInstallation
+metadata:
+  name: gcpinstallation-sample
+  namespace: default
+spec:
+  bucket: dgrigore-bucket
+  namespace: velero-gcp
+  provider:
+    gcp:
+      credentialMap:
+        namespaceName:
+          name: gcp-credentials
+          namespace: default
+  state:
+    deployNodeAgent: true
+    cleanUpCRDs: true
+    credentials: {}
+---
+apiVersion: addons.cluster.x-k8s.io/v1alpha1
+kind: VeleroSchedule
+metadata:
+  name: gcpschedule-sample
+  namespace: default
+spec:
+  template: {}
+  schedule: "* * * * *"
+  installation:
+    ref:
+      kind: VeleroInstallation
+      name: gcpinstallation-sample
+      namespace: default

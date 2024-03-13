@@ -35,3 +35,35 @@ spec:
   forceSyncGeneration: 1
   clientSecretName: basic-auth-secret
 EOF
+
+# Install CAPI Operator
+helm repo add capi-operator https://kubernetes-sigs.github.io/cluster-api-operator
+helm repo update
+helm install capi-operator capi-operator/cluster-api-operator --create-namespace -n capi-operator-system --set cert-manager.enabled=true --wait
+
+mkdir -r data
+cd data
+
+# Init git repo
+git init
+git remote add origin http://$NODE_IP:$NODE_PORT/$USERNAME/$REPO_NAME.git
+
+# Install all required CAPI Operator manifests
+git add providers.yaml
+git commit -m "Add operator providers"
+git push
+
+# Prepare initial cluster manifests
+git add cluster.yaml
+git commit -m "Add first cluster"
+git push
+
+# Add addon providers
+git add addons.yaml
+git commit -m "Add velero and helm addon providers"
+git push
+
+# Setup velero installation and schedule
+git add velero.yaml
+git commit -m "Add velero installation and schedule"
+git push

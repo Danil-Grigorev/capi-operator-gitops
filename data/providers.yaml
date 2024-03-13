@@ -4,7 +4,7 @@ metadata:
   name: cluster-api
   namespace: default
 spec:
-  version: v1.6.3
+  version: v1.6.2
   manager:
     featureGates:
       ClusterResourceSet: true
@@ -16,7 +16,7 @@ metadata:
   name: docker
   namespace: default
 spec:
-  version: v1.6.3
+  version: v1.6.2
   manager:
     featureGates:
       ClusterResourceSet: true
@@ -28,7 +28,7 @@ metadata:
   name: kubeadm
   namespace: default
 spec:
-  version: v1.6.3
+  version: v1.6.2
   manager:
     featureGates:
       ClusterResourceSet: true
@@ -40,7 +40,7 @@ metadata:
   name: kubeadm
   namespace: default
 spec:
-  version: v1.6.3
+  version: v1.6.2
   manager:
     featureGates:
       ClusterResourceSet: true

@@ -12,6 +12,6 @@ metadata:
   name: velero
   namespace: capi-operator-system
 spec:
-  fetchConfig:
+  fetchConfig: # We can specify a fetchConfig to pass custom source URLs for the provider type
     url: https://github.com/Danil-Grigorev/cluster-api-addon-provider-velero/releases/latest/addon-components.yaml
 
